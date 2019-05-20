@@ -1,0 +1,14 @@
+<%- include('../includes/head.ejs') %>
+<body>
+  <%- include('../includes/navigation.ejs') %>
+  <form action="/question/add-question" method="POST">
+    <label for="title">Question:</label>
+    <input type="text" name="title" id="question"><br>
+    <label for="content">Description:</label>
+    <input type="text" name="content" id="content"><br>
+    
+    <button class="btn btn-primaty" type="submit" >Ask!</button>
+  </form>
+
+
+<%- include('../includes/head.ejs') %>

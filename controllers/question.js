@@ -1,3 +1,18 @@
 module.exports.getQuestions = (req, res, next) => {
-  res.write('<h1>Hello World</h1>');
+  res.render('questions/question-list', {
+    pageTitle: 'Questionary',
+    path: '/questions'
+  })
+};
+
+module.exports.getAddQuestion = (req, res, next) => {
+  res.render("questions/add-question", {
+    pageTitle: "Ask away!",
+    path: "/questions"
+  });
+};
+
+
+module.exports.postAddQuestion = (req, res, next) => {
+
 }
