@@ -4,7 +4,7 @@
   <% questions.forEach(question => { %>
     <ul>
       <li>
-        <h3><%= question.title %></h3>
+        <h3><a href="/questions/<%=question._id%>"><%= question.title %></a></h3>
       </li>
       <li>
         <p><%= question.content %></p>

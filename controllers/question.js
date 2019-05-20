@@ -1,8 +1,9 @@
 const Question = require("../models/question");
+const Answer = require("../models/answer");
 
 exports.getIndex = async (req, res, next) => {
   const questions = await Question.find().populate('user', 'name');
-  console.log(questions);
+  
   res.render("questions/question-list", {
     pageTitle: "Questionary",
     path: "/questions",
@@ -18,6 +19,15 @@ exports.getQuestions = async (req, res, next) => {
     questions
   });
 };
+
+exports.getQuestion = async (req, res, next) => {
+  const question = await Question.findById(req.params.id);
+  res.render('questions/question-details', {
+    pageTitle: 'Details about a question',
+    path: '/question',
+    question
+  })
+}
 
 exports.getAddQuestion = (req, res, next) => {
   console.log(req);
@@ -44,8 +54,17 @@ exports.postAddQuestion = async(req, res, next) => {
 
 exports.postAddAnswer = (req, res, next) => {
   const user = req.user;
-  const title = req.body.title;
   const content = req.body.content;
   const questionId = req.body.questionId;
+
+  Answer.create({ 
+    content,
+    userId:user,
+    questionId
+  }).then(()=>{
+    console.log('Answer added!');
+    res.redirect('/questions');
+  })
+
 
 }
