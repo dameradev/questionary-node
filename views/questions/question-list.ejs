@@ -1,6 +1,17 @@
 <%- include('../includes/head.ejs') %>
 <body>
   <%- include('../includes/navigation.ejs') %>
-
-
+  <% questions.forEach(question => { %>
+    <ul>
+      <li>
+        <h3><%= question.title %></h3>
+      </li>
+      <li>
+        <p><%= question.content %></p>
+      </li>
+      <li>
+        <p class="font-italic mute">Posted by <%= question.user.name %></p>
+      </li>
+    </ul>  
+  <% }) %>
 <%- include('../includes/head.ejs') %>
