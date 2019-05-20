@@ -21,5 +21,6 @@ module.exports.getAddQuestion = (req, res, next) => {
 
 
 module.exports.postAddQuestion = (req, res, next) => {
-
+  const title = req.body.title;
+  const content = req.body.content;
 }
