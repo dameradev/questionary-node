@@ -13,4 +13,10 @@
     <input type="hidden" name="questionId" value="<%= question._id %>">
     <button type="submit" class="btn btn-secondary">Answer!</button>
   </form>
+
+  
+    <% answers.forEach(answer=> { %>
+    <p><%= answer.content %></p>
+    <% }) %>
+  
 <%- include('../includes/head.ejs') %>

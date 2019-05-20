@@ -22,10 +22,13 @@ exports.getQuestions = async (req, res, next) => {
 
 exports.getQuestion = async (req, res, next) => {
   const question = await Question.findById(req.params.id);
+  const answers = await Answer.find({questionId: question._id})
+  
   res.render('questions/question-details', {
     pageTitle: 'Details about a question',
     path: '/question',
-    question
+    question,
+    answers
   })
 }
 
@@ -63,7 +66,7 @@ exports.postAddAnswer = (req, res, next) => {
     questionId
   }).then(()=>{
     console.log('Answer added!');
-    res.redirect('/questions');
+    res.redirect(`/questions/${questionId}`);
   })
 
 
