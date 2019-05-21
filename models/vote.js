@@ -2,25 +2,22 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const answerSchema = new Schema({
-  content: {
-    type: String,
+const voteSchema = new Schema({
+  vote: {
+    type: Number,
     required: true
   },
-  questionId: {
+  answerId: {
     type: Schema.Types.ObjectId,
-    ref: "Question",
+    ref: "Answer",
     required: true
   },
   userId: {
     type: Schema.Types.ObjectId,
     ref: "User",
     required: true
-  },
-  votes: {
-    type: Schema.Types.ObjectId,
-    ref: 'Vote'
   }
+  
 });
 
-module.exports = mongoose.model("Answer", answerSchema);
+module.exports = mongoose.model("Vote", voteSchema);

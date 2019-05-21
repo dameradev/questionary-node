@@ -1,5 +1,7 @@
 const Question = require("../models/question");
 const Answer = require("../models/answer");
+const Vote = require('../models/vote');
+
 
 exports.getIndex = async (req, res, next) => {
   const questions = await Question.find().populate('user', 'name');
@@ -58,7 +60,7 @@ exports.postAddQuestion = async(req, res, next) => {
 exports.postAddAnswer = (req, res, next) => {
   const user = req.user;
   const content = req.body.content;
-  const questionId = req.body.questionId;
+  
 
   Answer.create({ 
     content,
@@ -68,6 +70,19 @@ exports.postAddAnswer = (req, res, next) => {
     console.log('Answer added!');
     res.redirect(`/questions/${questionId}`);
   })
+}
 
+exports.postAddVote = (req, res, next) => {
+  const answerId = req.body.answerId;
+  const user = req.user;
+  const questionId = req.body.questionId;
 
+  Vote.create({
+    vote: 1,
+    answerId,
+    userId: user
+  }).then(()=> {
+    console.log('Vote added');
+    res.redirect(`/questions/${questionId}`);
+  }).catch(err=>console.log(err));
 }
