@@ -1,3 +1,4 @@
+const User = require("../models/user");
 exports.getLogin = (req, res, next) => {
   res.render("auth/login", {
     pageTitle: "Login",
@@ -5,6 +6,17 @@ exports.getLogin = (req, res, next) => {
   });
 };
 
-exports.postLogin = (req, res, next) => {
-  res.send("404");
+exports.postLogin = async (req, res, next) => {
+  const user = await User.findOne();
+
+  req.session.user = user;
+  await req.session.save();
+  res.redirect("/");
+};
+
+exports.postLogout = (req, res, next) => {
+  req.session.destroy(err => {
+    console.log(err);
+    res.redirect("/");
+  });
 };
