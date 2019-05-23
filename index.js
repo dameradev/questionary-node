@@ -6,6 +6,7 @@ const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const MONGODB_URI = "mongodb://localhost/questionary";
 const csrf = require("csurf");
+const flash = require("connect-flash");
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.use(
   })
 );
 app.use(csrfProtection);
+app.use(flash());
 
 app.use(async (req, res, next) => {
   const user = await User.findOne();

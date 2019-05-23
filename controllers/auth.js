@@ -1,3 +1,5 @@
+const bcrypt = require("bcryptjs");
+
 const User = require("../models/user");
 exports.getLogin = (req, res, next) => {
   res.render("auth/login", {
@@ -20,4 +22,27 @@ exports.postLogout = (req, res, next) => {
     console.log(err);
     res.redirect("/");
   });
+};
+
+exports.getSignUp = (req, res, next) => {
+  res.render("auth/signup", {
+    pageTitle: "Please register",
+    path: "/signup"
+  });
+};
+
+exports.postSignUp = async (req, res, next) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  const hasedPassword = await bcrypt.hash(password, 12);
+  let user = await User.findOne({ email });
+  if (user) {
+    return res.redirect("/signup");
+  }
+  user = new User({
+    email,
+    password: hasedPassword
+  });
+  await user.save();
+  res.redirect("/login");
 };

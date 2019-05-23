@@ -4,7 +4,7 @@
 
   <h3><%= question.title %></h3>
   <p><%= question.content %></p>
-  <p class="font-italic mute">Posted by <%= question.user.name %></p>
+  <p class="font-italic mute">Posted by <%= question.user.email %></p>
 
   <form action="/questions/answer" method="POST">
     <label for="content">Your answer</label>
