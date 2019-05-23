@@ -11,6 +11,7 @@
     <input type="text" name="content" id="content" />
 
     <input type="hidden" name="questionId" value="<%= question._id %>" />
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
     <button type="submit" class="btn btn-secondary">Answer!</button>
   </form>
 

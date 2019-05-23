@@ -6,21 +6,26 @@
       <li class="nav-item">
         <a class="nav-link" href="/questions"> Questions </a>
       </li>
+      <% if(isAuthenticated) { %>
       <li class="nav-item">
         <a class="nav-link" href="/questions/add-question"> Ask! </a>
       </li>
+      <% } %>
     </ul>
 
     <ul class="nav justify-content-end">
+      <% if(!isAuthenticated) { %>
       <li class="nav-item">
         <a class="nav-link" href="/login">Login</a>
       </li>
+      <% } else { %>
       <li class="nav-item">
         <form action="/logout" method="POST">
           <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
           <button type="submit">LogOut</button>
         </form>
       </li>
+      <% } %>
     </ul>
   </div>
 </nav>
