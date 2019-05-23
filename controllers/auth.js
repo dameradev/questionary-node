@@ -9,12 +9,24 @@ exports.getLogin = (req, res, next) => {
 };
 
 exports.postLogin = async (req, res, next) => {
-  const user = await User.findOne();
+  const email = req.body.email;
+  const password = req.body.password;
 
-  req.session.user = user;
-  req.session.isLoggedIn = true;
-  await req.session.save();
-  res.redirect("/");
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    res.redirect("/login");
+  }
+
+  const doMatch = await bcrypt.compare(password, user.password);
+  if (doMatch) {
+    req.session.user = user;
+    req.session.isLoggedIn = true;
+    await req.session.save();
+    res.redirect("/");
+  } else {
+    req.redirect("/login");
+  }
 };
 
 exports.postLogout = (req, res, next) => {
