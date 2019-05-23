@@ -2,18 +2,19 @@ const express = require("express");
 
 const router = express.Router();
 
+const isAuth = require("../middleware/is-auth");
+
 const questionController = require("../controllers/question");
 
 router.get("/", questionController.getQuestions);
 
+router.get("/add-question", isAuth, questionController.getAddQuestion);
+
+router.post("/add-question", isAuth, questionController.postAddQuestion);
+
+router.post("/answer", isAuth, questionController.postAddAnswer);
+
+router.post("/add-vote", isAuth, questionController.postAddVote);
+
 router.get("/:id", questionController.getQuestion);
-
-router.get("/add-question", questionController.getAddQuestion);
-
-router.post("/add-question", questionController.postAddQuestion);
-
-router.post("/answer", questionController.postAddAnswer);
-
-router.post("/add-vote", questionController.postAddVote);
-
 module.exports = router;

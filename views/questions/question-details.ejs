@@ -20,7 +20,7 @@
     <form action="/questions/add-vote" method="POST">
       <input type="hidden" name="answerId" value="<%=answer._id%>" />
       <input type="hidden" name="questionId" value="<%=question._id%>" />
-      <input type="hidden" name="_csrf" value="<%= csfrToken %>" />
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
       <button type="submit">Like</button>
     </form>
     <form action="/questions/remove-vote">

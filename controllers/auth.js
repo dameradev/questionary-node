@@ -10,6 +10,7 @@ exports.postLogin = async (req, res, next) => {
   const user = await User.findOne();
 
   req.session.user = user;
+  req.session.isLoggedIn = true;
   await req.session.save();
   res.redirect("/");
 };
