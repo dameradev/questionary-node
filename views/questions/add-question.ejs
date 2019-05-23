@@ -4,12 +4,13 @@
   <div class="container">
     <form action="/questions/add-question" method="POST">
       <label for="title">Question:</label>
-      <input type="text" name="title" id="title"><br>
+      <input type="text" name="title" id="title" /><br />
       <label for="content">Description:</label>
-      <input type="text" name="content" id="content"><br>
-      
-      <button class="btn btn-primary" type="submit" >Ask!</button>
-    </form>
+      <input type="text" name="content" id="content" /><br />
 
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <button class="btn btn-primary" type="submit">Ask!</button>
+    </form>
   </div>
-<%- include('../includes/head.ejs') %>
+  <%- include('../includes/head.ejs') %>
+</body>

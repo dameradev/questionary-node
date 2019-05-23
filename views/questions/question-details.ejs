@@ -1,33 +1,33 @@
 <%- include('../includes/head.ejs') %>
 <body>
   <%- include('../includes/navigation.ejs') %>
-  
+
   <h3><%= question.title %></h3>
   <p><%= question.content %></p>
   <p class="font-italic mute">Posted by <%= question.user.name %></p>
 
   <form action="/questions/answer" method="POST">
     <label for="content">Your answer</label>
-    <input type="text" name="content" id="content">
-    
-    <input type="hidden" name="questionId" value="<%= question._id %>">
+    <input type="text" name="content" id="content" />
+
+    <input type="hidden" name="questionId" value="<%= question._id %>" />
     <button type="submit" class="btn btn-secondary">Answer!</button>
   </form>
 
-  
-    <% answers.forEach(answer=> { %>
-    <p><%= answer.content %></p>
-    <div>
-      <form action="/questions/add-vote" method="POST">
-        <input type="hidden" name="answerId" value="<%=answer._id%>">
-        <input type="hidden" name="questionId" value="<%=question._id%>">
-        <button type="submit">Like</button>
-      </form>
-      <form action="/questions/remove-vote">
-        <input type="hidden" name="answerId" value="answer._id">
-        <button type="submit">Dislike</button>
-      </form>
-    </div>
-    <% }) %>
-  
-<%- include('../includes/head.ejs') %>
+  <% answers.forEach(answer=> { %>
+  <p><%= answer.content %></p>
+  <div>
+    <form action="/questions/add-vote" method="POST">
+      <input type="hidden" name="answerId" value="<%=answer._id%>" />
+      <input type="hidden" name="questionId" value="<%=question._id%>" />
+      <input type="hidden" name="_csrf" value="<%= csfrToken %>" />
+      <button type="submit">Like</button>
+    </form>
+    <form action="/questions/remove-vote">
+      <input type="hidden" name="answerId" value="answer._id" />
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <button type="submit">Dislike</button>
+    </form>
+  </div>
+  <% }) %> <%- include('../includes/head.ejs') %>
+</body>

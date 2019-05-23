@@ -5,12 +5,15 @@ const express = require("express");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const MONGODB_URI = "mongodb://localhost/questionary";
+const csrf = require("csurf");
+
 const app = express();
 
 const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: "sessions"
 });
+const csrfProtection = csrf();
 
 //ROUTES
 const questionRoutes = require("./routes/question");
@@ -25,6 +28,7 @@ app.set("views", "views");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
+
 app.use(
   session({
     secret: "my secret",
@@ -33,10 +37,17 @@ app.use(
     store: store
   })
 );
+app.use(csrfProtection);
 
 app.use(async (req, res, next) => {
   const user = await User.findOne();
   req.user = user;
+  next();
+});
+
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session.isLoggedIn;
+  res.locals.csrfToken = req.csrfToken();
   next();
 });
 
