@@ -69,13 +69,15 @@ exports.getSignUp = (req, res, next) => {
   res.render("auth/signup", {
     pageTitle: "Please register",
     path: "/signup",
-    message
+    message,
+    oldInput: { email: "", password: "", confirmPassword: "" }
   });
 };
 
 exports.postSignUp = async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
+  const confirmPassword = req.body.confirmPassword;
   const hashedPassword = await bcrypt.hash(password, 12);
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -83,7 +85,8 @@ exports.postSignUp = async (req, res, next) => {
     res.render("auth/signup", {
       pageTitle: "Please register",
       path: "/signup",
-      message: errors.array()[0].msg
+      message: errors.array()[0].msg,
+      oldInput: { email, password, confirmPassword }
     });
   }
   let user = await User.findOne({ email });
