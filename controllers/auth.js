@@ -1,3 +1,4 @@
+const { validationResult } = require("express-validator/check");
 const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
@@ -76,6 +77,15 @@ exports.postSignUp = async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
   const hashedPassword = await bcrypt.hash(password, 12);
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log(errors);
+    res.render("auth/signup", {
+      pageTitle: "Please register",
+      path: "/signup",
+      message: errors.array()[0].msg
+    });
+  }
   let user = await User.findOne({ email });
   if (user) {
     req.flash("error", "User with this email already exists");
