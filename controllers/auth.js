@@ -70,7 +70,8 @@ exports.getSignUp = (req, res, next) => {
     pageTitle: "Please register",
     path: "/signup",
     message,
-    oldInput: { email: "", password: "", confirmPassword: "" }
+    oldInput: { email: "", password: "", confirmPassword: "" },
+    validationErrors: []
   });
 };
 
@@ -86,7 +87,8 @@ exports.postSignUp = async (req, res, next) => {
       pageTitle: "Please register",
       path: "/signup",
       message: errors.array()[0].msg,
-      oldInput: { email, password, confirmPassword }
+      oldInput: { email, password, confirmPassword },
+      validationErrors: errors.array()
     });
   }
   let user = await User.findOne({ email });
