@@ -96,7 +96,7 @@ exports.postSignUp = async (req, res, next) => {
   res.redirect("/login");
 };
 
-const getResetPassword = (req, res, next) => {
+exports.getResetPassword = (req, res, next) => {
   let message = req.flash("error");
   if (message) {
     message = message[0];
@@ -107,5 +107,38 @@ const getResetPassword = (req, res, next) => {
     pageTitle: "Reset password",
     path: "/reset",
     message
+  });
+};
+
+exports.postResetPassword = (req, res, next) => {
+  const email = req.body.email;
+  crypto.randomBytes(32, (err, buffer) => {
+    if (err) {
+      console.log(err);
+      return res.redirect("/reset");
+    }
+    const token = buffer.toString("hex");
+    User.findOne({ email })
+      .then(user => {
+        if (!user) {
+          req.flash("The user with this email doesn't exist");
+          res.redirect("/reset");
+        }
+        user.resetToken = token;
+        user.resetTokenExpiration = Date.now() + 3600000;
+        return user.save();
+      })
+      .then(result => {
+        res.redirect("/");
+        transporter.sendMail({
+          to: email,
+          from: "questionary@support.com",
+          subject: "Password reset",
+          html: `<h2>You've requested a password reset for ${email}
+                 <p> To reset your password please click on this <a href='https://localhost/reset/${token}'>Link</a></p>
+          `
+        });
+      })
+      .catch(err => console.log(err));
   });
 };
