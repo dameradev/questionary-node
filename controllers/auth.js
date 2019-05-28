@@ -1,6 +1,18 @@
+const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
+const nodemailer = require("nodemailer");
+const sendgridTransport = require("nodemailer-sendgrid-transport");
 
 const User = require("../models/user");
+
+const transporter = nodemailer.createTransport(
+  sendgridTransport({
+    auth: {
+      api_key:
+        "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"
+    }
+  })
+);
 
 exports.getLogin = (req, res, next) => {
   let message = req.flash("error");
@@ -63,7 +75,7 @@ exports.getSignUp = (req, res, next) => {
 exports.postSignUp = async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
-  const hasedPassword = await bcrypt.hash(password, 12);
+  const hashedPassword = await bcrypt.hash(password, 12);
   let user = await User.findOne({ email });
   if (user) {
     req.flash("error", "User with this email already exists");
@@ -71,8 +83,29 @@ exports.postSignUp = async (req, res, next) => {
   }
   user = new User({
     email,
-    password: hasedPassword
+    password: hashedPassword
   });
   await user.save();
+
+  transporter.sendMail({
+    to: email,
+    from: "questionary@support.com",
+    subject: "You've succesfully registered",
+    html: "<h1>Thanks for registering on Questionary</h1>"
+  });
   res.redirect("/login");
+};
+
+const getResetPassword = (req, res, next) => {
+  let message = req.flash("error");
+  if (message) {
+    message = message[0];
+  } else {
+    message = null;
+  }
+  res.render("auth/reset", {
+    pageTitle: "Reset password",
+    path: "/reset",
+    message
+  });
 };

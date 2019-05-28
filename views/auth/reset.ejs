@@ -1,0 +1,16 @@
+<%- include('../includes/head.ejs') %>
+<body>
+  <%- include('../includes/navigation.ejs') %>
+  <div class="container">
+    <div><%= message %></div>
+    <form action="/reset" method="POST">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input class="form-control" type="email" name="email" id="email" />
+      </div>
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <button type="submit" class="btn btn-secondary">Login!</button>
+    </form>
+  </div>
+  <%- include('../includes/head.ejs') %>
+</body>
