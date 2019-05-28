@@ -20,9 +20,11 @@
     "ejs": "^2.6.1",
     "express": "^4.17.0",
     "express-session": "^1.16.1",
+    "mailgun-js": "^0.22.0",
     "mongodb": "^3.2.5",
     "mongoose": "^5.5.9",
     "nodemailer": "^6.2.1",
+    "nodemailer-mailgun-transport": "^1.4.0",
     "nodemailer-sendgrid-transport": "^0.2.0",
     "path": "^0.12.7"
   }
