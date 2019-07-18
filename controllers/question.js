@@ -5,11 +5,13 @@ const Category = require('../models/category');
 
 exports.getIndex = async (req, res, next) => {
   const questions = await Question.find().populate('user', 'email').populate('category');
+  const categories = await Category.find();
   
   res.render("questions/question-list", {
     pageTitle: "Questionary",
     path: "/questions",
-    questions
+    questions, 
+    categories
   });
 };
 

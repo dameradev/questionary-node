@@ -6,10 +6,12 @@
     <div class="categories">
       <h1>Categories</h1>
       <ul class="categories-list">
+        <% categories.forEach(category => { %>
         <li class="categories-list__item">
-          <a href="">node.Js</a>
+          <a href=""><%= category.title %></a>
         </li>
-        <li class="categories-list__item">
+        <% }) %>
+        <!-- <li class="categories-list__item">
           <a href="">react.Js</a>
         </li>
         <li class="categories-list__item">
@@ -20,7 +22,7 @@
         </li>
         <li class="categories-list__item">
           <a href="">Fontend</a>
-        </li>
+        </li> -->
       </ul>
     </div>
     <% if (questions) { %> 
