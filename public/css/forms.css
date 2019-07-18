@@ -1,3 +1,57 @@
-.form-group input.invalid {
-  border-color: red;
+.form {
+  font-size: 1.2rem;
+  font-family: "Lato";
+}
+.form input,
+.form label,
+.form textarea,
+.form button, 
+.form select {
+  display: block;
+  margin: 1rem 0;
+  padding:0;
+}
+
+.form input,
+.form select,
+.form textarea {
+  width: 100%;
+  outline: none;
+  border: 1px solid #8bafe9;
+}
+
+.form input:hover,
+.form input:active,
+.form select:hover,
+.form select:active,
+.form textarea:hover,
+.form textarea:active {
+  border: 1px solid #1B2432;
+  background: #faf9f9;
+} 
+
+.form input {
+  height: 1.3rem;
+}
+
+.form button {
+  outline: none;
+  padding: 1rem;
+  border: 1px solid #8bafe9;
+  background: none;
+  border-radius: 20px;
+  font-size:0.8rem;
+}
+
+.form button:hover,
+.form button:active {
+  background: #8bafe9;
+  color:white 
+}
+
+@media (min-width: 40rem) {
+  .form {
+    width: 40%;
+    margin: 0 auto;
+  }
 }

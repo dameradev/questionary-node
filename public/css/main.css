@@ -50,7 +50,6 @@ main {
 
 .questions-list__item .question-title {
   width: 100%;
-  /* border-bottom: 1px solid #1B2432; */
   padding-bottom: 1rem;
   margin-bottom: 0;
   color: #8bafe9;
@@ -60,7 +59,6 @@ main {
   margin-top: 0;
   padding: 2rem;
   border-top: 1px solid #1B2432;
-  /* border-bottom: 1px solid #1B2432; */
   background: #fafafa;
 }
 
