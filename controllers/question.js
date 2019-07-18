@@ -15,14 +15,6 @@ exports.getIndex = async (req, res, next) => {
   });
 };
 
-exports.getQuestions = async (req, res, next) => {
-  const questions = await Question.find().populate('user', 'email');
-  res.render("questions/question-list", {
-    pageTitle: "Questionary",
-    path: "/questions",
-    questions
-  });
-};
 
 exports.getQuestion = async (req, res, next) => {
   const question = await Question.findById(req.params.id);

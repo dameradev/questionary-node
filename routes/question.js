@@ -6,7 +6,7 @@ const isAuth = require("../middleware/is-auth");
 
 const questionController = require("../controllers/question");
 
-router.get("/", questionController.getQuestions);
+router.get("/", questionController.getIndex);
 
 router.get("/add-question", isAuth, questionController.getAddQuestion);
 

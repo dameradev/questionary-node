@@ -14,14 +14,14 @@ h6 {
   font-family: 'Roboto', sans-serif;
 }
 main {
-  min-height: calc(100vh - 9.5rem);
+  min-height: calc(100vh - 10.9rem);
 }
 
 .main-header {
   background: #1B2432;
   display: flex;
   justify-content: space-between;
-  
+  height: 4.5rem;
   align-items: center;
   
 }
