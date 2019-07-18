@@ -1,7 +1,7 @@
 <%- include('../includes/head.ejs') %>
 <body>
   <%- include('../includes/navigation.ejs') %>
-  <div class="container">
+  <main>
     <form action="/questions/add-question" method="POST">
       <label for="title">Question:</label>
       <input type="text" name="title" id="title" /><br />
@@ -11,6 +11,6 @@
       <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
       <button class="btn btn-primary" type="submit">Ask!</button>
     </form>
-  </div>
-  <%- include('../includes/head.ejs') %>
+  </main>
+  <%- include('../includes/end.ejs') %>
 </body>
