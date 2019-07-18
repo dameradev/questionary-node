@@ -14,7 +14,7 @@ exports.getIndex = async (req, res, next) => {
 };
 
 exports.getQuestions = async (req, res, next) => {
-  const questions = await Question.find();
+  const questions = await Question.find().populate('user');
   res.render("questions/question-list", {
     pageTitle: "Questionary",
     path: "/questions",
