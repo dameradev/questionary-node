@@ -10,7 +10,7 @@
       <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
       <select name="category" id="category">
         <% categories.forEach(category => { %>
-          <option value="<%= category._id %>"><%= category.title %></option>
+          <option value="<%= category._id%>"><%= category.title %></option>
        <% }) %>
       </select>
     

@@ -53,6 +53,7 @@ main {
   /* border-bottom: 1px solid #1B2432; */
   padding-bottom: 1rem;
   margin-bottom: 0;
+  color: #8bafe9;
 }
 
 .question-content {
@@ -63,6 +64,9 @@ main {
   background: #fafafa;
 }
 
+.question-content .category-name {
+  color: #8bafe9;
+}
 .posted-by {
   font-style: italic;
   font-weight: 100;

@@ -2,6 +2,9 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
+const {categorySchema} = require('./category');
+
+
 const questionSchema = new Schema({
   title: {
     type: String,
@@ -17,9 +20,8 @@ const questionSchema = new Schema({
     required: true
   },
   category: {
-    type: Schema.Types.ObjectId,
-    ref: "Category",
-    required: true
+    type: categorySchema,
+    required:true
   }
 });
 
