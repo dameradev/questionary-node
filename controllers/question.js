@@ -4,7 +4,7 @@ const Answer = require("../models/answer");
 
 
 exports.getIndex = async (req, res, next) => {
-  const questions = await Question.find().populate('user', 'name');
+  const questions = await Question.find().populate('user', 'email');
   
   res.render("questions/question-list", {
     pageTitle: "Questionary",
@@ -14,7 +14,7 @@ exports.getIndex = async (req, res, next) => {
 };
 
 exports.getQuestions = async (req, res, next) => {
-  const questions = await Question.find().populate('user');
+  const questions = await Question.find().populate('user', 'email');
   res.render("questions/question-list", {
     pageTitle: "Questionary",
     path: "/questions",

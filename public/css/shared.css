@@ -60,3 +60,8 @@ h6 {
   border-color: #2176AE;
   color: white;
 }
+
+main {
+  width: 80%;
+  margin: 0 auto;
+}
