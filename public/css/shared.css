@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto', sans-serif;
+}
+
+.main-header {
+  background: #1B2432;
+  display: flex;
+  justify-content: space-between;
+  
+  align-items: center;
+  
+}
+
+.main-header a {
+  text-decoration: none;
+  color: #8bafe9;
+}
+
+.nav-brand {
+  padding-left: 1rem;
+  vertical-align: middle;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  
+  
+}
+
+.nav-list-item {
+  padding-right: 1rem;
+  
+}
+.nav-list-item form button {
+  border:none;
+  background: none;
+  color: #8bafe9;
+  /* vertical-align: middle; */
+  font-size: 1.03rem;
+  border: 2px solid #2C2B3C;
+  padding: 0.5rem;
+  border-radius: 20px;
+}
+.nav-list-item form button:hover {
+  background: #2176AE;
+  border-color: #2176AE;
+  color: white;
+}

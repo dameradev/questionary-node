@@ -48,7 +48,7 @@ exports.postLogin = async (req, res, next) => {
     res.redirect("/");
   } else {
     req.flash("error", "Invalid email or password");
-    req.redirect("/login");
+    res.redirect("/login");
   }
 };
 
