@@ -4,7 +4,7 @@ const Category = require('../models/category');
 
 
 exports.getIndex = async (req, res, next) => {
-  const questions = await Question.find().populate('user', 'email');
+  const questions = await Question.find().populate('user', 'email').populate('category');
   
   res.render("questions/question-list", {
     pageTitle: "Questionary",
@@ -51,11 +51,13 @@ exports.postAddQuestion = async(req, res, next) => {
   const user = req.user;
   const title = req.body.title;
   const content = req.body.content;
+  const category = req.body.category;
   
   Question.create({
     title,
     content,
-    user
+    user,
+    category
   }).then(() => {
     console.log("Question added!");
     res.redirect("/questions");
