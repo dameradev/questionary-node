@@ -7,8 +7,13 @@
       <input type="text" name="title" id="title" /><br />
       <label for="content">Description:</label>
       <input type="text" name="content" id="content" /><br />
-
       <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <select name="category" id="category">
+        <% categories.forEach(category => { %>
+          <option value="<%= category.title %>"><%= category.title %></option>
+       <% }) %>
+      </select>
+    
       <button class="btn btn-primary" type="submit">Ask!</button>
     </form>
   </main>

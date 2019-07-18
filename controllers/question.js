@@ -1,6 +1,6 @@
 const Question = require("../models/question");
 const Answer = require("../models/answer");
-
+const Category = require('../models/category');
 
 
 exports.getIndex = async (req, res, next) => {
@@ -35,11 +35,16 @@ exports.getQuestion = async (req, res, next) => {
 }
 
 exports.getAddQuestion = (req, res, next) => {
-  console.log(req);
-  res.render("questions/add-question", {
-    pageTitle: "Ask away!",
-    path: "/questions"
-  });
+  Category.find()
+  .then(categories => {
+    res.render("questions/add-question", {
+      pageTitle: "Ask away!",
+      path: "/questions",
+      categories
+    });
+  })
+  .catch(err=> console.log(err))
+  
 };
 
 exports.postAddQuestion = async(req, res, next) => {
