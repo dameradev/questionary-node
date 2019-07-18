@@ -20,6 +20,7 @@ const csrfProtection = csrf();
 const questionRoutes = require("./routes/question");
 const indexPage = require("./routes/index");
 const authRoutes = require("./routes/auth");
+const categoryRoutes = require("./routes/category");
 
 //MODELS
 const User = require("./models/user");
@@ -56,6 +57,7 @@ app.use((req, res, next) => {
 app.use("/questions", questionRoutes);
 app.use(indexPage);
 app.use(authRoutes);
+app.use(categoryRoutes);
 
 mongoose
   .connect(MONGODB_URI, { useNewUrlParser: true })
