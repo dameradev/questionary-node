@@ -1,22 +1,22 @@
 <%- include('../includes/head.ejs') %>
-<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/forms.css" />
 <body>
   <%- include('../includes/navigation.ejs') %>
   <main>
     <form class="form" action="/questions/add-question" method="POST">
       <label for="title">Question</label>
       <input type="text" name="title" id="title" />
-      
+
       <label for="content">Description</label>
       <textarea name="content" id="content" cols="30" rows="10"></textarea>
-      
+
       <label for="category">Category</label>
       <select name="category" id="category">
         <% categories.forEach(category => { %>
-          <option value="<%= category._id%>"><%= category.title %></option>
-       <% }) %>
+        <option value="<%= category._id %>"><%= category.title %></option>
+        <% }) %>
       </select>
-      
+
       <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
       <button class="btn btn-primary" type="submit">Ask!</button>
     </form>

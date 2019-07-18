@@ -1,52 +1,50 @@
 const Question = require("../models/question");
 const Answer = require("../models/answer");
-const {Category} = require('../models/category');
-
+const { Category } = require("../models/category");
 
 exports.getIndex = async (req, res, next) => {
-  const questions = await Question.find().populate('user', 'email');
+  const questions = await Question.find().populate("user", "email");
   const categories = await Category.find();
-  
+
   res.render("questions/question-list", {
     pageTitle: "Questionary",
     path: "/questions",
-    questions, 
+    questions,
     categories
   });
 };
 
-
 exports.getQuestion = async (req, res, next) => {
   const question = await Question.findById(req.params.id);
-  const answers = await Answer.find({questionId: question._id})
-  
-  res.render('questions/question-details', {
-    pageTitle: 'Details about a question',
-    path: '/question',
+  const answers = await Answer.find({ questionId: question._id });
+
+  res.render("questions/question-details", {
+    pageTitle: "Details about a question",
+    path: "/question",
     question,
     answers
-  })
-}
+  });
+};
 
 exports.getAddQuestion = (req, res, next) => {
   Category.find()
-  .then(categories => {
-    res.render("questions/add-question", {
-      pageTitle: "Ask away!",
-      path: "/questions",
-      categories
-    });
-  })
-  .catch(err=> console.log(err))
-  
+    .then(categories => {
+      res.render("questions/add-question", {
+        pageTitle: "Ask away!",
+        path: "/questions",
+        categories
+      });
+    })
+    .catch(err => console.log(err));
 };
 
-exports.postAddQuestion = async(req, res, next) => {
+exports.postAddQuestion = async (req, res, next) => {
   const user = req.user;
   const title = req.body.title;
   const content = req.body.content;
-  const categoryId = req.body.categoryId;
-  const category = await Category.findOne(categoryId);
+  const categoryId = req.body.category;
+  console.log;
+  const category = await Category.findById(categoryId);
 
   console.log(category);
   Question.create({
@@ -68,25 +66,27 @@ exports.postAddAnswer = (req, res, next) => {
   const content = req.body.content;
   const questionId = req.body.questionId;
 
-  Answer.create({ 
+  Answer.create({
     content,
-    userId:user,
+    userId: user,
     questionId
-  }).then(()=>{
-    console.log('Answer added!');
+  }).then(() => {
+    console.log("Answer added!");
     res.redirect(`/questions/${questionId}`);
-  })
-}
+  });
+};
 
-exports.postAddVote = async(req, res, next) => {
+exports.postAddVote = async (req, res, next) => {
   const answerId = req.body.answerId;
   const user = req.user;
   const questionId = req.body.questionId;
   const answer = await Answer.findById(answerId);
-  
-    answer.addVote(user._id)
-    .then(()=> {
-    console.log('Vote added');
-    res.redirect(`/questions/${questionId}`);
-  }).catch(err=>console.log(err));
-}
+
+  answer
+    .addVote(user._id)
+    .then(() => {
+      console.log("Vote added");
+      res.redirect(`/questions/${questionId}`);
+    })
+    .catch(err => console.log(err));
+};

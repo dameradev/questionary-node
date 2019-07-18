@@ -1,7 +1,7 @@
 <%- include('../includes/head.ejs') %>
-<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/main.css" />
 <body>
-  <%- include('../includes/navigation.ejs') %> 
+  <%- include('../includes/navigation.ejs') %>
   <main>
     <div class="categories">
       <h1>Categories</h1>
@@ -11,27 +11,35 @@
           <a href="/categories/<%= category._id %>"><%= category.title %></a>
         </li>
         <% }) %>
+        <li class="category-list__item">
+          <a href="/add-category">Add new category</a>
+        </li>
       </ul>
     </div>
-    <% if (questions) { %> 
-      <div class="questions">
+    <% if (questions) { %>
+    <div class="questions">
       <% questions.forEach(question => { %>
-        
-          <ul class="questions-list">
-            <li class="questions-list__item">
-              <h3 class="question-title" >Question: <a href="/questions/<%=question._id%>"><%= question.title %></a></h3>
-            </li>
-            <li class="questions-list__item question-content">
-              <p>Category: <span class="category-name"><%= question.category.title %></span></p>
-              <p class=""> <%= question.content %></p>
-              <p class="posted-by">Posted by <%= question.user.email %></p>
-            </li>
-            
-          </ul>
-        
-      <% }) %> 
+
+      <ul class="questions-list">
+        <li class="questions-list__item">
+          <h3 class="question-title">
+            Question:
+            <a href="/questions/<%=question._id%>"><%= question.title %></a>
+          </h3>
+        </li>
+        <li class="questions-list__item question-content">
+          <p>
+            Category:
+            <span class="category-name"><%= question.category.title %></span>
+          </p>
+          <p class=""><%= question.content %></p>
+          <p class="posted-by">Posted by <%= question.user.email %></p>
+        </li>
+      </ul>
+
+      <% }) %>
     </div>
-    <% } %> 
+    <% } %>
   </main>
   <%- include('../includes/end.ejs') %>
 </body>

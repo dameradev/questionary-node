@@ -1,0 +1,14 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css" />
+<body>
+  <%- include('../includes/navigation.ejs') %>
+  <main>
+    <form class="form" action="/add-category" method="POST">
+      <input type="text" name="title" id="title" />
+
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <button type="submit">Add</button>
+    </form>
+  </main>
+  <%- include('../includes/end.ejs') %>
+</body>
