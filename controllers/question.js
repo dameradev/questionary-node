@@ -59,6 +59,16 @@ exports.postAddQuestion = async (req, res, next) => {
   });
 };
 
+exports.postDeleteQuestion = (req, res, next) => {
+  const questionId = req.params.questionId;
+
+  Question.findOneAndDelete(questionId).then((question)=> {
+    console.log('Deleted question', question);
+    res.redirect('/')
+  }).catch(err => console.log(err));
+}
+
+
 exports.postAddAnswer = (req, res, next) => {
   const user = req.user;
   const content = req.body.content;
@@ -88,3 +98,5 @@ exports.postAddVote = async (req, res, next) => {
     })
     .catch(err => console.log(err));
 };
+
+

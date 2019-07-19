@@ -16,6 +16,11 @@
         </p>
         <p class=""><%= question.content %></p>
         <p class="posted-by">Posted by <%= question.user.email %></p>
+        <form action="/questions/delete/<%= question._id %>" method="POST">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <button class="delete-question" type="submit">Delete</button>
+        </form>
+        
       </li>
     </ul>
 

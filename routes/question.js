@@ -17,4 +17,6 @@ router.post("/answer", isAuth, questionController.postAddAnswer);
 router.post("/add-vote", isAuth, questionController.postAddVote);
 
 router.get("/:id", questionController.getQuestion);
+
+router.post("/delete/:questionId", questionController.postDeleteQuestion);
 module.exports = router;

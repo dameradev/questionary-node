@@ -105,6 +105,12 @@ main {
   font-weight: 100;
 }
 
+.delete-question {
+  padding: 1rem;
+  border: 1px solid red;
+  border-radius: 20px;
+  display: inline-block;
+}
 
 .main-footer {
   background: #8bafe9;
