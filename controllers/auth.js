@@ -5,6 +5,7 @@ const nodemailer = require("nodemailer");
 const mailgunTransport = require("nodemailer-mailgun-transport");
 
 const User = require("../models/user");
+const Question = require('../models/question');
 
 const transporter = nodemailer.createTransport(
   mailgunTransport({
@@ -206,21 +207,14 @@ exports.postNewPassword = async (req, res, next) => {
     .catch(err => console.log(err));
 };
 
-// const newPassword = req.body.newPassword;
-// const userId = req.body.userId;
-// const passwordToken = req.body.passwordToken;
-
-// const user = await User.find({
-//   resetToken: passwordToken,
-//   resetTokenExpiration: { $gt: Date.now() },
-//   _id: userId
-// });
-// console.log(user);
-// const hashedPassword = await bcrypt.hash(newPassword, 12);
-
-// user.password = hashedPassword;
-// user.resetToken = undefined;
-// user.resetTokenExpiration = undefined;
-// await user.save();
-
-// res.redirect("/login");
+exports.getProfile = async (req, res, next) => {
+  const user = req.user;
+  const questions = await Question.find({'user': user._id})
+  
+  res.render("auth/my-profile", {
+    pageTitle: user.email,
+    path: "/profile",
+    user,
+    questions
+  });
+};

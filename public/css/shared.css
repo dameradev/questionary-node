@@ -68,6 +68,43 @@ main {
   width: 80%;
   margin: 0 auto;
 }
+.questions {
+  margin-left: 25vw;
+  /* margin-top: 13rem; */
+}
+.questions-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.questions-list a {
+  text-decoration: none;
+  color: #1b2432;
+}
+
+.questions-list__item .question-title {
+  width: 100%;
+  padding-bottom: 1rem;
+  margin-bottom: 0;
+  color: #8bafe9;
+}
+
+.question-content {
+  margin-top: 0;
+  padding: 2rem;
+  border-top: 1px solid #1b2432;
+  background: #fafafa;
+}
+
+.question-content .category-name {
+  color: #8bafe9;
+}
+.posted-by {
+  font-style: italic;
+  font-weight: 100;
+}
+
 
 .main-footer {
   background: #8bafe9;
