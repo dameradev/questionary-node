@@ -100,17 +100,29 @@ main {
 .question-content .category-name {
   color: #8bafe9;
 }
+
+.question-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .posted-by {
   font-style: italic;
   font-weight: 100;
 }
 
 .delete-question {
-  padding: 1rem;
+  padding: 0.5rem;
   border: 1px solid red;
   border-radius: 20px;
-  display: inline-block;
+  font-size: 0.8rem;
 }
+
+.delete-question:hover {
+  background: #ff6262;
+  color: white;
+}
+
 
 .main-footer {
   background: #8bafe9;
