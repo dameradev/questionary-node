@@ -43,10 +43,9 @@ exports.postAddQuestion = async (req, res, next) => {
   const title = req.body.title;
   const content = req.body.content;
   const categoryId = req.body.category;
-  console.log;
+
   const category = await Category.findById(categoryId);
 
-  console.log(category);
   Question.create({
     title,
     content,
@@ -56,7 +55,6 @@ exports.postAddQuestion = async (req, res, next) => {
       title: category.title
     }
   }).then(() => {
-    console.log("Question added!");
     res.redirect("/questions");
   });
 };
