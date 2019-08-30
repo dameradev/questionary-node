@@ -15,7 +15,7 @@ exports.getIndex = async (req, res, next) => {
 };
 
 exports.getQuestion = async (req, res, next) => {
-  const question = await Question.findById(req.params.id);
+  const question = await Question.findById(req.params.id).populate("user");
   const answers = await Answer.find({ questionId: question._id });
 
   res.render("questions/question-details", {

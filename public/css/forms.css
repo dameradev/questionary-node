@@ -18,6 +18,8 @@
   width: 100%;
   outline: none;
   border: 1px solid #8bafe9;
+  padding:10px;
+  font-size: 1.2rem;
 }
 
 .form input:hover,
@@ -32,6 +34,7 @@
 
 .form input {
   height: 1.3rem;
+  padding:10px;
 }
 
 .form button {
@@ -47,6 +50,57 @@
 .form button:active {
   background: #8bafe9;
   color:white 
+}
+
+.answers {
+  width: 60%;
+  margin: 0 auto;
+  
+}
+
+.answers  h1 {
+  text-align: center;
+  font-weight: 100;
+  border-bottom: 4px solid #ccc;
+  padding-bottom: 20px;
+}
+
+.vote-text {
+  display: flex;
+  justify-content: space-between;
+}
+
+.likes {
+  color: green;
+}
+
+.dislikes {
+  color:red;
+}
+
+.vote-buttons {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  width: 20%;
+}
+
+.like,.dislike {
+  width: 20%;
+  display: inline-block;
+}
+
+
+.question {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  border-bottom: 2px solid #8bafe9;
+}
+
+.user-email {
+  font-style: italic;
+  font-weight: bold;
 }
 
 @media (min-width: 40rem) {
